@@ -1,0 +1,452 @@
+<!DOCTYPE html>
+<html lang="en">
+
+{% load Store_ranking_tags %}
+
+ <meta name="viewport" content="user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, width=device-width" />
+    <meta charset="UTF-8">
+
+ <title>Title</title>
+
+
+<style>
+
+    html, body {
+            margin: 0;
+            width: 100%;
+            height: 100%; }
+    * {margin: 0;, padding : 0;}
+
+    body {font-family: inherit;}
+    li {list-style: none;}
+    a { text-decoration: none;}
+
+
+    .wrap section {
+        float: left;
+    }
+
+
+    .product {
+        width: 300px;
+        height: 760px;
+        margin: 10px 5px 0px 20px ;
+    }
+
+    .view_menu {
+        width: 290px;
+        height: 50px;
+        background-color: steelblue;
+        border: 1px solid black;
+        text-align: center;
+        margin-top: 5px;
+        line-height: 50px;
+        color: white;
+    }
+
+    .register_menu {
+        width: 290px;
+        height: 50px;
+        background-color: dimgrey;
+        text-align: center;
+        margin-top: 5px;
+        line-height: 50px;
+        color: white;
+    }
+
+    button {
+        width: 290px;
+        height: 40px;
+        background-color: darkgrey;
+        text-align: center;
+        margin-top: 5px;
+        line-height: 40px;
+        color: black;
+        font-size: 15px;
+
+    }
+
+
+    input {
+        box-sizing: border-box;
+        width: 290px;
+        height: 35px;
+        margin-top: 5px;
+    }
+
+    #messages {
+        width: 290px;
+        height: 50px;
+        background-color: skyblue;
+        text-align: center;
+        margin-top: 15px
+        line-height: 50px;
+    }
+
+
+    .product_list {
+        width: 290px;
+        height: 400px;
+        border: 1px solid black;
+        margin-top: 5px;
+        overflow: hidden;
+        white-space: nowrap;
+    }
+
+
+    .product_list div {
+        width: 290px;
+        height:25px;
+
+    }
+
+    .product_list div:hover {
+        background-color: steelblue;
+        border: 1px solid steelblue;
+        cursor: pointer;
+    }
+
+    .product_list div:active {
+    background-color: steelblue;
+    border: 1px solid steelblue;
+    cursor: pointer;
+    }
+
+
+    .keyword {
+        width: 300px;
+        margin: 10px 5px 0px 5px;
+    }
+
+
+    .selected_list {
+        width: 290px;
+        height: 75px;
+        border: black 1px solid;
+        box-sizing: border-box;
+        text-align: start;
+        margin-top: 5px;
+    }
+
+    .selected_list li {
+        font-size: 120%;
+    }
+
+
+    .keyword_list {
+        width: 290px;
+        margin-top: 5px;
+    }
+
+    .keyword_list p {
+        margin-top: 10px;
+        text-align: center;
+    }
+
+    .keyword table {
+        box-sizing: border-box;
+        text-align: center;
+        margin-top: 5px;
+        border-spacing: 5px;
+    }
+
+
+    .keyword_list td:nth-of-type(2n-1) {
+        width: 55px;
+        height: 30px;
+        background-color: dimgrey;
+        color: white;
+        font-size: 80%;
+        box-sizing: border-box;
+    }
+
+    .keyword_list td:nth-of-type(2n) {
+        width: 200px;
+        height: 30px;
+
+    }
+
+    .keyword_list input {
+        width: 200px;
+        height: 30px;
+
+    }
+
+    .results {
+        width: 750px;
+        margin: 10px 5px 0px 5px;
+        overflow: hidden;
+    }
+
+    .results>div:nth-child(1) {
+        width: 740px;
+        height: 50px;
+        border: black 1px solid;
+        background-color: lightslategrey;
+        color: white;
+        text-align: center;
+        line-height: 50px;
+        margin-top: 5px;
+    }
+
+    .results table {
+        margin-top: 5px;
+        width: 740px;
+        border-collapse: collapse;
+    }
+
+
+    .results td {
+        border: 1px solid black;
+        height: 30px;
+
+    }
+
+    .results th {
+        border: 1px solid black;
+        font-size: 50%;
+        height: 40px;
+    }
+
+
+    .results th:first-child {
+        width: 200px;
+        font-size: 100%;
+    }
+
+
+    .results>.actions>div {
+        background-color: darkgrey;
+        text-align: center;
+        margin-top: 5px;
+        line-height: 100px;
+        color: black;
+        width: 370px;
+        height: 100px;
+        font-size: 150%;
+        float: left;
+    }
+
+    .results button {
+        width: 370px;
+        height: 100px;
+        font-size: 150%;
+        float: left;
+    }
+
+
+</style>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script type="text/javascript">
+
+        var product_id = ''
+
+        document.addEventListener('click', function(event) {
+            if(event.target.value == 'show-page') {
+                document.querySelector('.wrap form').target = '_blank'
+            }
+            else {
+                document.querySelector('.wrap form').target = ''
+            }
+
+        })
+
+
+        function select(Product, ProductId) {
+
+            var products = document.querySelectorAll('.product_list div')
+
+            for (var i=0; i<products.length; i++) {
+                products[i].classList.remove('selected')
+                products[i].style.backgroundColor = 'white'
+                }
+
+            Product.classList.add('selected')
+            Product.style.backgroundColor = 'steelblue'
+
+            return selected_product_info(ProductId)
+        }
+
+
+        function selected_product_info(ProductId) {
+
+            product_id = ProductId
+            document.getElementById('select_id').value = ProductId
+            document.querySelector('article').innerHTML = document.getElementById(product_id).innerHTML;
+
+            return show_keyword_list(product_id)
+        }
+
+
+        function show_keyword_list(ProductId) {
+
+            var formData = new FormData();
+            formData.append('csrfmiddlewaretoken', document.querySelector("#form > p > input").value)
+            formData.append('selected_id', ProductId)
+
+            var myInit = {
+                method: 'POST',
+                body: formData
+                };
+
+            fetch('/keywords.json', myInit)
+                .then(function(res){
+                    return res.json();
+                })
+                .then(function(myJson){
+                    var str_json = JSON.stringify(myJson)
+                    var keywords = JSON.parse(str_json)
+                    return keywords;
+                })
+                .then(function(keywords){
+                    for ( var num in keywords) {
+                        document.getElementById('keyword-name-'+ num).value = keywords[num];
+                    };
+                });
+        }
+
+
+    function show_rank() {
+
+        const data = new FormData();
+        data.append('csrfmiddlewaretoken', document.querySelector("#form > p > input").value);
+        data.append('selected_id', product_id)
+
+        var Init = {
+                method: 'POST',
+                body: data,
+            };
+
+        fetch('/ranks.json', Init)
+            .then(function(res) {
+                return res.json();
+            })
+            .then(function(myJson){
+                var str_json = JSON.stringify(myJson)
+                var rank_info = JSON.parse(str_json)
+
+                console.log(rank_info)
+                return rank_info
+            })
+            .then(function(rank_info){
+
+                var keys = Object.keys(rank_info)
+                var ranks = Object.values(rank_info)
+                var searched_number = ranks[0].length
+
+                for( var key_number in keys ) {
+                    var tr_num = parseInt(key_number)+1;
+                    document.querySelector("#rank-info tr:nth-child(" + tr_num + ") > td:nth-child(1)").innerHTML = keys[key_number]
+                };
+
+
+                for( var i = 0; i < searched_number; i++) {
+                    for ( var rank_number in ranks) {
+                        var rank_tr_num = parseInt(rank_number)+1;
+                        var rank_td_num = parseInt(i)+2;
+                        document.querySelector("#rank-info th:nth-child(" + rank_td_num + ")").innerHTML = ranks[rank_number][i][0]
+                        document.querySelector("#rank-info tr:nth-child(" + rank_tr_num + ") > td:nth-child(" + rank_td_num + ")").innerHTML = ranks[rank_number][i][1]
+
+                    }
+                }
+            });
+        }
+
+    </script>
+</head>
+<body>
+
+
+<div class="wrap">
+
+    <form id='form' action="/action/" method="post" target="">
+        <p>{% csrf_token %}</p>
+        <section class="product">
+            <div class="view_menu"> 쇼핑목 상품 목록 </div>
+            <div class="product_list">
+
+            {% for product in products %}
+                <div id="{{ product.id }}" onclick="select(this,{{product.id}})"> {{product}} </div>
+            {% endfor %}
+
+            </div>
+
+            <div class="actions">
+                <div class="register_menu"> 상품추가 주소등록 </div>
+                <input type="text" name="product_address">
+
+                {% for mas in messages %}
+                    <div id="messages" class="{{mas.tags}}">{{mas}}</div>
+                {% endfor %}
+
+                <input type="hidden" id="select_id" name="selected_product" value="">
+                <button type="submit" name="action" value="add-product"> 입력한 상품 추가 등록 </button>
+                <button type="submit" name="action" value="show-page"> 선택 상품 페이지보기 </button>
+                <button type="submit" name="action" value="delete-product"> 선택 상품 삭제 </button>
+            </div>
+        </section>
+
+
+        <section class="keyword">
+            <div class="view_menu"> 상품상세 / 검색키워드 </div>
+            <div class="selected_list">
+                <article> </article>
+            </div>
+            <div class="keyword_list">
+                <div class="register_menu"> 상품추가 주소 등록 </div>
+                <p style="font-size: 80%" > 변경 전, 삭제된 키워드 이력은 삭제됩니다. </p>
+                <table>
+
+                {% for num in range %}
+                {% with keywords|nth_keyword:num as keyword %}
+
+                    <tr><td> {% if keyword != "" %} # {{ keyword.number}}{% else %} {% endif %} {% if not keyword %} # {{ num }} {% endif %} </td>
+                        <td><input id="keyword-name-{{num}}" type="text" name='keyword-name-{{num}}' value= '{{keyword.name}}'></td></tr>
+
+                {% endwith %}
+                {% endfor %}
+
+                </table>
+            </div>
+
+            <div class="actions">
+                <button type="submit" name="action" value="modify-keyword"> 상품 키워드 추가/ 수정 / 삭제 </button>
+            </div>
+        </section>
+
+
+        <section class="results">
+            <div> 상품키워드 검색 순위 정보 </div>
+            <table id="rank-info">
+                <thead>
+                    <th>상품 키워드</th><th></th><th></th><th></th><th></th><th></th><th></th><th></th><th></th><th></th><th></th>
+
+                </thead>
+                <tbody>
+                    <tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+                    <tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+                    <tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+                    <tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+                    <tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+                    <tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+                    <tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+                    <tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+                    <tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+                    <tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+                    <tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+                </tbody>
+            </table>
+
+            <div class="actions">
+                <div onclick="show_rank()"> 1.상품 순위보기 </div>
+            </div>
+
+            <div class="description">
+                <button type="submit" name="action" value="search-start"> 2.순위검색 시작 </button>
+            </div>
+        </section>
+    </form>
+
+</div>
+</body>
+</html>
