@@ -10,5 +10,5 @@ CSS
 
 
 # Demo
-./main/cap_01.gif
-./main/cap_02.gif
+/cap_01.gif
+/cap_02.gif
