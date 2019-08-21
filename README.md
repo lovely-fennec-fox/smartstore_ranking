@@ -10,5 +10,5 @@ CSS
 
 
 # Demo
-/cap_01.gif
-/cap_02.gif
+![](/main/cap_01.gif)
+![](/main/cap_02.gif)
