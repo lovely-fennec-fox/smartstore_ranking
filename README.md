@@ -9,5 +9,6 @@ HTML5
 CSS
 
 
-./cap_01.gif
-./cap_02.gif
+# Demo
+/main/cap_01.gif
+/main/cap_02.gif
