@@ -6,7 +6,7 @@
 
 ## `Used Library`
 
-### Python / Django / Naver API
+### Python / Django / sqlite3 / Naver API
 ### HTML5 / CSS
 
 <br>
