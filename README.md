@@ -45,7 +45,7 @@
 <br>
 
 2) 키워드로 검색하고 싶은 쇼핑몰의 주소값을 복사합니다.
-<img src="/main/cap_02.giff" width="800" height="400">
+<img src="/main/cap_02.gif" width="800" height="400">
 
 <br>
 <br>
@@ -61,10 +61,10 @@
 <br>
 <br>
 
-5) 해당 키워드 값을 확인 한 후, '상품순위보기'를 클릭하면 키워드에 따른 쇼핑몰이 노출되는 순위를 알 수 있습니다.
+5) 해당 키워드로 순위검색을 한 뒤, '상품순위보기'를 클릭하면 키워드에 따른 쇼핑몰이 노출되는 순위를 알 수 있습니다.
 <img src="/main/cap_05.gif" width="800" height="400">
 <br>
-<img src="//main/cap_06.giff" width="800" height="400">
+<img src="/main/cap_06.giff" width="800" height="400">
 <br>
 <br>
 
