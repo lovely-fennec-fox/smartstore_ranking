@@ -64,7 +64,7 @@
 5) 해당 키워드로 순위검색을 한 뒤, '상품순위보기'를 클릭하면 키워드에 따른 쇼핑몰이 노출되는 순위를 알 수 있습니다.
 <img src="/main/cap_05.gif" width="800" height="400">
 <br>
-<img src="/main/cap_06.giff" width="800" height="400">
+<img src="/main/cap_06.gif" width="800" height="400">
 <br>
 <br>
 
